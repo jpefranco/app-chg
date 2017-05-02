@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="es.chguadalquivir.chg" version="102" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    
+    <name>CH Guadalquivir</name>
+
+    <description>
+        CH Guadalquivir
+    </description>
+
+    <author href="http://phonegap.com" email="aomartin@gfi.es">
+        GFI Sur
+    </author>
+
+	<!-- Pagina de inicio -->
+    <content src="index.html" />
+	
+    <!--
+        If you do not want any permissions to be added to your app, add the
+        following tag to your config.xml; you will still have the INTERNET
+        permission on your app, which PhoneGap requires.-->
+    
+    <preference name="permissions"                value="none"/>
+	<preference name="windows-appx-target" value="uap"/>
+	<preference name="windows-identity-name" value="CHGuadalquivir" />
+
+    <plugin name="cordova-plugin-whitelist" version="1" />	
+    <plugin name="org.apache.cordova.console" />
+    <plugin name="org.apache.cordova.device" />
+    <plugin name="org.apache.cordova.device-motion" />
+    <plugin name="org.apache.cordova.device-orientation" />
+    <plugin name="org.apache.cordova.dialogs" />
+    <plugin name="org.apache.cordova.file" />
+    <plugin name="org.apache.cordova.file-transfer" />
+    <plugin name="org.apache.cordova.geolocation" />
+    <plugin name="org.apache.cordova.globalization" />
+    <plugin name="org.apache.cordova.inappbrowser" />
+    <plugin name="org.apache.cordova.network-information" />
+    <plugin name="org.apache.cordova.splashscreen" />
+	
+	<icon src="res/icon/icon.png" />
+
+
+	
+    <splash src="res/screen/splash.png" />
+    <splash src="res/screen/Default-568h@2x.png" width="640" height="1136"/>
+    <splash src="res/screen/Default-736h.png" width="1242" height="2208"/>
+
+
+
+	
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+	
+    <platform name="android">
+        <allow-intent href="market:*" />
+		
+		<icon src="res/icon/android/icon-36-ldpi.png"   platform="android"    qualifier="ldpi" />
+		<icon src="res/icon/android/icon-48-mdpi.png"   platform="android"    qualifier="mdpi" />
+		<icon src="res/icon/android/icon-72-hdpi.png"   platform="android"    qualifier="hdpi" />
+		<icon src="res/icon/android/icon-96-xhdpi.png"  platform="android"    qualifier="xhdpi" />
+		
+		<splash src="res/screen/android/screen-ldpi.png"       platform="android" qualifier="port-ldpi" />
+		<splash src="res/screen/android/screen-mdpi.png"       platform="android" qualifier="port-mdpi" />
+		<splash src="res/screen/android/screen-hdpi.png"       platform="android" qualifier="port-hdpi" />
+		<splash src="res/screen/android/screen-xhdpi.png"      platform="android" qualifier="port-xhdpi" />		
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+		
+		<icon src="res/icon/ios/icon-small.png"            platform="ios"        width="29" height="29" />
+		<icon src="res/icon/ios/icon-small@2x.png"         platform="ios"        width="58" height="58" />
+		<icon src="res/icon/ios/icon-40.png"            platform="ios"        width="40" height="40" />
+		<icon src="res/icon/ios/icon-40@2x.png"         platform="ios"        width="80" height="80" />
+		<icon src="res/icon/ios/icon-50.png"            platform="ios"        width="50" height="50" />
+		<icon src="res/icon/ios/icon-50@2x.png"         platform="ios"        width="100" height="100" />
+		<icon src="res/icon/ios/icon-57.png"            platform="ios"        width="57" height="57" />
+		<icon src="res/icon/ios/icon-57@2x.png"         platform="ios"        width="114" height="114" />
+		<icon src="res/icon/ios/icon-60.png"            platform="ios"        width="60" height="60" />
+		<icon src="res/icon/ios/icon-60@2x.png"         platform="ios"        width="120" height="120" />
+		<icon src="res/icon/ios/icon-72.png"            platform="ios"        width="72" height="72" />
+		<icon src="res/icon/ios/icon-72@2x.png"            platform="ios"        width="144" height="144" />
+		<icon src="res/icon/ios/icon-76.png"         platform="ios"        width="76" height="76" />
+		<icon src="res/icon/ios/icon-76@2x.png"         platform="ios"        width="152" height="152" />
+		<icon src="res/icon/ios/icon-120.png"            platform="ios"        width="120" height="120" />
+		<icon src="res/icon/ios/icon-120@2x.png"            platform="ios"        width="140" height="140" />
+		
+		<splash src="res/screen/ios/screen-iph2-3-3s.png"         platform="ios"     width="320" height="480" />
+		<splash src="res/screen/ios/screen-iph4-4s.png"      platform="ios"     width="640" height="960" />
+		<splash src="res/screen/ios/screen-iph5-5s.png"     platform="ios"     width="640" height="1136" />
+		<splash src="res/screen/ios/screen-iph6.png"           platform="ios"     width="768" height="1024" />
+		<splash src="res/screen/ios/screen-ipad-2x.png"          platform="ios"     width="1024" height="768" />
+		<splash src="res/screen/ios/screen-ipad2-1x.png"          platform="ios"     width="1024" height="768" />		
+    </platform>
+    
+	<preference name='phonegap-version' value='cli-5.2.0' />
+	<platform name="windows">
+			 <icon src="res/icon/windows/storelogo.png" target="StoreLogo" />
+			<icon src="res/icon/windows/smalllogo.png" target="Square30x30Logo" />
+			<icon src="res/icon/windows/Square44x44Logo.png" target="Square44x44Logo" />
+			<icon src="res/icon/windows/Square70x70Logo.png" target="Square70x70Logo" />
+			<icon src="res/icon/windows/Square71x71Logo.png" target="Square71x71Logo" />
+			<icon src="res/icon/windows/Square150x150Logo.png" target="Square150x150Logo" />
+			<icon src="res/icon/windows/Square310x310Logo.png" target="Square310x310Logo" />
+			<icon src="res/icon/windows/Wide310x150Logo.png" target="Wide310x150Logo" />
+			
+			<splash src="res/screen/windows/splashscreen.png" width="620" height="300"/> 
+			<splash src="res/screen/windows/splashscreenphone.png" width="1152" height="1920"/>
+	</platform>
+	
+</widget>

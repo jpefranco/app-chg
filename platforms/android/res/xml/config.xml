@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="es.chguadalquivir.chg" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    
+	<preference name="loglevel" value="DEBUG" />
+    
+	<allow-intent href="market:*" />
+	
+    <name>CHG Guadalquivir</name>
+
+    <description>
+        CHG Guadalquivir
+    </description>
+
+    <author href="http://phonegap.com" email="aomartin@gfi.es">
+        GFI Sur
+    </author>
+	
+    <content src="index.html" />
+	
+    <!-- Customize your app and platform with the preference element. -->
+    <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
+    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
+	<preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="SplashScreenDelay" value="5000" />
+	<!--<preference name="SplashScreen" value="screen" />-->
+	<preference name="BackgroundColor" value="0xffffffff"/>	
+	
+    <icon src="icon.png" />
+    <icon src="../drawable-hdpi/icon.png"   platform="android"    qualifier="ldpi" />
+    <icon src="../drawable-hdpi/icon.png"   platform="android"    qualifier="mdpi" />
+    <icon src="../drawable-xhdpi/icon.png"   platform="android"    qualifier="hdpi" />
+    <icon src="../drawable-xhdpi/icon.png"  platform="android"    qualifier="xhdpi" />
+	
+    <splash src="../drawable-hdpi/splash.png"       platform="android" qualifier="port-ldpi" />
+    <splash src="../drawable-hdpi/splash.png"       platform="android" qualifier="port-mdpi" />
+    <splash src="../drawable-xhdpi/splash.png"       platform="android" qualifier="port-hdpi" />
+    <splash src="../drawable-xhdpi/splash.png"      platform="android" qualifier="port-xhdpi" />	
+	
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+	
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+    </feature>
+    <feature name="Compass">
+        <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="Globalization">
+        <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+	
+</widget>

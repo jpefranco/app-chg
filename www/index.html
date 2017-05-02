@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="es" xml:lang="es">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <title>CHG</title>
+ 
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1, user-scalable=no"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+	<!-- <script src="resources/lib/cordova-2.4.0.js"></script> -->
+	
+	<link rel="stylesheet" href="resources/css/chg_theme.css" />
+	<link rel="stylesheet" href="resources/css/chg.css" />
+	<link rel="stylesheet" href="resources/css/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="resources/css/jquery.mobile.structure-1.4.5.min.css" />
+  
+    <script type="text/javascript" src="resources/lib/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="resources/lib/jquery.mobile-1.4.5.min.js"></script>
+
+   <script type="text/javascript">
+  
+	$(document).ready(function(){
+		$("#SAIHCaudalesInstantaneos").on("pagebeforeshow", function(event, data) {
+			drawTableCaudalInstantaneo();
+		});	
+		$("#SAIHCaudalesDiarios").on("pagebeforeshow", function(event, data) {
+			drawTableCaudalMedioDiario();
+		});
+		$("#SAIHPrecipitaciones").on("pagebeforeshow", function(event, data) {
+			drawTablePrecipitaciones();
+		});
+		drawFeedNoticias();
+		$("div:jqmData(role='panel')").css('margin-top',  ($("div:jqmData(role='header')").height()+11));
+	});
+	</script>
+	
+<!--
+	<script type="text/javascript">
+	document.addEventListener("deviceready", onDeviceReady, false);
+	function onDeviceReady() {
+        navigator.splashscreen.hide();
+    }
+	</script>-->
+ </head>
+<body>
+  
+  
+    <!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+	<!-- ------------------------------------------------ NOTICIAS ----------------------------------------------------------------------------------------------------------- -->
+	<!-- --------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+      <div data-role="page" data-control-title="Noticias" id="indexPage" data-theme="a">
+      <div data-theme="a" data-role="header" class="ui-bar"  data-position="fixed" data-tap-toggle="false">          
+		  <p  class="letraCabecero">Noticias</p>
+		  <a class="panel-btn abre_panel" data-controltype="panelbutton" data-role="button" data-inline="true"
+				data-theme="a" href="#menu">
+				<img src="resources/css/images/menu_btn.png" width="28px" />
+		  </a>
+		  <div class="ui-btn-right redesSociales" data-role="controlgroup" data-type="horizontal" style="margin-right: 20px">
+			<a class="b_rs_twitter" onclick="openUrl('https://twitter.com/CHGuadalquivir')" data-role="button">
+				<img src="resources/css/images/b_twitter.png" width="28px" />
+			</a>
+			<a class="b_rs_youtube" onclick="openUrl('https://www.youtube.com/channel/UCG9oWuLkJAwuBh2sSRCtQ2g')" data-role="button">
+				<img src="resources/css/images/b_youtube.png" width="28px" />
+			</a>
+		  </div>
+      </div>
+      <div data-role="content">
+
+		<img src="resources/images/banner_superior.png" width="100%" style="width:100%"/>
+		
+		<div id="noticiasMenu"></div>
+			<div id='loadingmessage' style="display: none; text-align: center">
+				<img src='./resources/images/ajax-loader.gif'/>
+			</div>
+			<div id='errormessage' style="display: none; text-align: center">
+				<img src='./resources/images/error_image_cc.jpg' style="width:120px; height:180px"/>
+				<p class="letraSaih">Error al cargar los datos</p>
+			</div>		
+	  
+	  </div>
+
+		<div data-role="panel" id="menu" data-position-fixed="true" data-position="left" data-display="overlay" data-theme="b" class="ui-panel-display-overlay ui-body-inherit ui-panel-fixed ui-panel-animate ui-panel-open panelM" >
+			<div class="ui-panel-inner">
+				<div>
+				<img src="resources/images/cabecera_left_menu.png" class="menuLeftImagenCabecera"/>
+				</div>
+				<ul class="menuLeft" data-role="listview" data-theme="a" data-divider-theme="c" data-inset="false">
+					<li class="b_noticias">
+						<a href="#indexPage" id="novedadesMenu" data-transition="fade" class="activo">
+							<span class="negrita letraMenu">Noticias</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesInstantaneos" id="caudalesInstantaneosMenu" data-transition="fade" >
+							<span class="negrita letraMenu">Caudales Instantáneos</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesDiarios" id="caudalesDiariosMenu" data-transition="fade">
+							<span class="negrita letraMenu">Caudales Medio Diario</span>
+						</a>
+					</li>
+					<li class="b_saih_precipitaciones">
+						<a href="#SAIHPrecipitaciones" id="precipitacionesMenu" data-transition="fade"  >
+							<span class="negrita letraMenu">Precipitaciones</span>
+						</a>
+					</li>
+				</ul>	
+		  </div>
+	 </div>
+  </div>
+   
+  
+  <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- ------------------------------------------------ CAUDALES INSTANTANEOS ----------------------------------------------------------------------------------------------------------- -->
+  <!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+  
+    <div data-role="page" data-control-title="SAIH Caudales Instantaneos" id="SAIHCaudalesInstantaneos" data-theme="a">
+        <div data-theme="a" data-role="header" class="ui-bar"  data-position="fixed" data-tap-toggle="false">
+          <p style="text-align:left" class="letraCabecero">Caudales Instantáneos
+          </p>
+		   <a class="panel-btn abre_panel" data-controltype="panelbutton" data-role="button" data-inline="true"
+				data-theme="a" href="#menu1">
+				<img src="resources/css/images/menu_btn.png" width="28px" />
+		  </a>
+		  <div class="ui-btn-right redesSociales" data-role="controlgroup" data-type="horizontal" style="margin-right: 20px">
+			<a class="b_rs_twitter" onclick="openUrl('https://twitter.com/CHGuadalquivir')" data-role="button">
+				<img src="resources/css/images/b_twitter.png" width="28px" />
+			</a>
+			<a class="b_rs_youtube" onclick="openUrl('https://www.youtube.com/channel/UCG9oWuLkJAwuBh2sSRCtQ2g')" data-role="button">
+				<img src="resources/css/images/b_youtube.png" width="28px" />
+			</a>
+		  </div>
+		  <div data-role="navbar" data-iconpos="left" data-theme="a" style="align-text:center; margin-left: -15px; margin-top: 22px">
+				<div>
+				    <ul>
+					   <li style="height:40px">
+						 <a id="tablaBtn1" onclick="drawTableCaudalInstantaneo();" style="height:20px" data-transition="slideup" data-icon="grid" class="letraMenu">Tabla</a>
+					   </li>
+					   <li style="height:40px">
+						 <a id="mapBtn1" onclick="drawMapCaudalInstantaneo(false);" style="height:20px" data-transition="slideup" data-icon="navigation" class="letraMenu">Mapa</a>
+					   </li>
+					</ul>
+				</div>
+			</div>
+      </div>
+      <div data-role="content" style= "overflow:scroll;">
+	  
+		<div id="contenidoTabla">				
+			<div id="contenidoTablaInfo" class="contenidoTabla">				
+			</div>
+			<div id='loadingmessage1' style="display: none; text-align: center">
+				<img src='./resources/images/ajax-loader.gif'/>
+			</div>
+			<div id='errormessage1' style="display: none; text-align: center">
+				<img src='./resources/images/error_image_cc.jpg' style="width:120px; height:180px"/>
+				<p class="letraSaih">Error al cargar los datos</p>
+			</div>
+			<div id="infoAdicional">	
+				<p class="letraSaih">*Datos obtenidos desde el SAIH de CHG.</p>
+				<!--<div class="saihlink">
+					<a href="http://www.chguadalquivir.es/saih/" class="ui-btn linkimgSaih">
+					<img src="resources/images/saih_icon.png" width="150px" height="auto" class="linkimgSaih"/></a>
+				</div>-->
+			</div>
+		</div>
+	  
+		<div id="contenidoMapa" style="height: 90%;">
+			<div id="map_canvas_caudal_instantaneo" style="height: 100%;"></div>
+		</div>		
+	  </div>
+	 
+	  
+<div data-role="panel" id="menu1" data-position-fixed="true" data-position="left" data-display="overlay" data-theme="a" class="ui-panel-display-overlay ui-body-inherit ui-panel-fixed ui-panel-animate ui-panel-open panelM" >
+		<div class="ui-panel-inner">
+			<div>
+				<img src="resources/images/cabecera_left_menu.png" class="menuLeftImagenCabecera"/>
+				</div>
+				<ul class="menuLeft" data-role="listview" data-theme="a" data-divider-theme="c" data-inset="false">
+					<li class="b_noticias">
+						<a href="#indexPage" id="novedadesMenu" data-transition="fade">
+							<span class="negrita letraMenu">Noticias</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesInstantaneos" id="caudalesInstantaneosMenu" data-transition="fade" class="activo">
+							<span class="negrita letraMenu">Caudales Instantáneos</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesDiarios" id="caudalesDiariosMenu" data-transition="fade">
+							<span class="negrita letraMenu">Caudales Medio Diario</span>
+						</a>
+					</li>
+					<li class="b_saih_precipitaciones">
+						<a href="#SAIHPrecipitaciones" id="precipitacionesMenu" data-transition="fade">
+							<span class="negrita letraMenu">Precipitaciones</span>
+						</a>
+					</li>
+				</ul>	
+		  </div>
+	 </div>
+  </div>
+  
+	<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------ CAUDALES DIARIOS ----------------------------------------------------------------------------------------------------------- -->
+	<!-- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+
+  <div data-role="page" data-control-title="SAIH Caudales Medio Diario" id="SAIHCaudalesDiarios" data-theme="a">
+        <div data-theme="a" data-role="header" class="ui-bar"  data-position="fixed" data-tap-toggle="false">
+          <p  class="letraCabecero">Caudales Diarios
+          </p>
+		   <a class="panel-btn abre_panel" data-controltype="panelbutton" data-role="button" data-inline="true"
+				data-theme="a" href="#menu2">
+				<img src="resources/css/images/menu_btn.png" width="28px" />
+		  </a>
+		  <div class="ui-btn-right redesSociales" data-role="controlgroup" data-type="horizontal" style="margin-right: 20px">
+			<a class="b_rs_twitter" onclick="openUrl('https://twitter.com/CHGuadalquivir')" data-role="button">
+				<img src="resources/css/images/b_twitter.png" width="28px" />
+			</a>
+			<a class="b_rs_youtube" onclick="openUrl('https://www.youtube.com/channel/UCG9oWuLkJAwuBh2sSRCtQ2g')" data-role="button">
+				<img src="resources/css/images/b_youtube.png" width="28px" />
+			</a>
+		  </div>
+		  <div data-role="navbar" data-iconpos="left" data-theme="a" style="margin-left: -15px; margin-top: 22px">
+				<div>
+				    <ul>
+					   <li style="height:40px">
+						 <a id="tablaBtn2" onclick="drawTableCaudalMedioDiario();" style="height:20px" data-transition="slideup" data-icon="grid" class="ui-btn-active letraMenu">Tabla</a>
+					   </li>
+					   <li style="height:40px">
+						 <a id="mapBtn2" onclick="drawMapCaudalMedioDiario(false);" style="height:20px" data-transition="slideup" data-icon="navigation" class="letraMenu">Mapa</a>
+					   </li>
+					</ul>
+				</div>
+			</div>
+      </div>
+      <div data-role="content" style= "overflow:scroll;">
+	  
+		<div id="contenidoTabla">				
+			<div id="contenidoTablaInfo" class="contenidoTabla">				
+			</div>
+			<div id='loadingmessage2' style="display: none; text-align: center">
+				<img src='./resources/images/ajax-loader.gif'/>
+			</div>
+			<div id='errormessage2' style="display: none; text-align: center">
+				<img src='./resources/images/error_image_cc.jpg' style="width:120px; height:180px"/>
+				<p class="letraSaih">Error al cargar los datos</p>
+			</div>
+			<div id="infoAdicional">	
+				<p class="letraSaih">*Datos obtenidos desde el SAIH de CHG. </p>
+				<!--<div class="saihlink">
+					<a href="http://www.chguadalquivir.es/saih/" class="ui-btn linkimgSaih">
+					<img src="resources/images/saih_icon.png" width="150px" height="auto" class="linkimgSaih"/></a>
+				</div>-->
+			</div>
+		</div>
+	  
+		<div id="contenidoMapa" style="height: 90%;">
+			<div id="map_canvas_caudal_diario" style="height: 100%;"></div>
+		</div>
+		
+	  </div>
+	  
+	  
+<div data-role="panel" id="menu2" data-position-fixed="true" data-position="left" data-display="overlay" data-theme="a" class="ui-panel-display-overlay ui-body-inherit ui-panel-fixed ui-panel-animate ui-panel-open panelM" >
+		<div class="ui-panel-inner">
+			<div>
+				<img src="resources/images/cabecera_left_menu.png" class="menuLeftImagenCabecera"/>
+				</div>
+				<ul class="menuLeft" data-role="listview" data-theme="a" data-divider-theme="c" data-inset="false">
+					<li class="b_noticias">
+						<a href="#indexPage" id="novedadesMenu" data-transition="fade">
+							<span class="negrita letraMenu">Noticias</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesInstantaneos" id="caudalesInstantaneosMenu" data-transition="fade" >
+							<span class="negrita letraMenu">Caudales Instantáneos</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesDiarios" id="caudalesDiariosMenu" data-transition="fade" class="activo">
+							<span class="negrita letraMenu">Caudales Medio Diario</span>
+						</a>
+					</li>
+					<li class="b_saih_precipitaciones">
+						<a href="#SAIHPrecipitaciones" id="precipitacionesMenu" data-transition="fade">
+							<span class="negrita letraMenu">Precipitaciones</span>
+						</a>
+					</li>
+				</ul>	
+		  </div>
+	 </div>
+  </div>  
+  
+	<!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ------------------------------------------------ PRECIPITACIONES ----------------------------------------------------------------------------------------------------------- -->
+	<!-- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
+   
+   <div data-role="page" data-control-title="SAIH Precipitaciones" id="SAIHPrecipitaciones" data-theme="a">
+       <div data-theme="a" data-role="header" class="ui-bar"  data-position="fixed" data-tap-toggle="false">
+          <p  class="letraCabecero">Precipitaciones
+          </p>
+		   <a class="panel-btn abre_panel" data-controltype="panelbutton" data-role="button" data-inline="true"
+				data-theme="a" href="#menu3">
+				<img src="resources/css/images/menu_btn.png" width="28px" />
+		  </a>
+		  <div class="ui-btn-right redesSociales" data-role="controlgroup" data-type="horizontal" style="margin-right: 20px">
+			<a class="b_rs_twitter" onclick="openUrl('https://twitter.com/CHGuadalquivir')" data-role="button">
+				<img src="resources/css/images/b_twitter.png" width="28px" />
+			</a>
+			<a class="b_rs_youtube" onclick="openUrl('https://www.youtube.com/channel/UCG9oWuLkJAwuBh2sSRCtQ2g')" data-role="button">
+				<img src="resources/css/images/b_youtube.png" width="28px" />
+			</a>
+		  </div>
+			<div data-role="navbar" data-iconpos="left" data-theme="a" style="margin-left: -15px; margin-top: 22px">
+				<div>
+				    <ul>
+					   <li style="height:40px">
+						 <a id="tablaBtn3" onclick="drawTablePrecipitaciones();" style="height:20px" data-transition="slideup" data-icon="grid" class="ui-btn-active letraMenu">Tabla</a>
+					   </li>
+					   <li style="height:40px">
+						 <a id="mapBtn3" onclick="drawMapPrecipitaciones(false);" style="height:20px" data-transition="slideup" data-icon="navigation" class="letraMenu">Mapa</a>
+					   </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	  
+      <div data-role="content">	  
+	  
+		<div id="contenidoTabla">				
+			<div id="contenidoTablaInfo" class="contenidoTabla">				
+			</div>
+			<div id='loadingmessage3' style="display: none;text-align: center">
+				<img src='./resources/images/ajax-loader.gif'/>
+			</div>
+			<div id='errormessage3' style="display: none; text-align: center">
+				<img src='./resources/images/error_image_cc.jpg' style="width:120px; height:180px"/>
+				<p class="letraSaih">Error al cargar los datos</p>
+			</div>
+			<div id="infoAdicional">	
+				<p class="letraSaih">*Datos obtenidos desde el SAIH de CHG.</p>
+				<!--<div class="saihlink">
+					<a href="http://www.chguadalquivir.es/saih/" class="ui-btn linkimgSaih">
+					<img src="resources/images/saih_icon.png" width="150px" height="auto" class="linkimgSaih"/></a>
+				</div> -->
+			</div>
+		</div>
+		<div id="contenidoMapa" style="height: 90%;">
+			<div id="map_canvas_precipitaciones" style="height: 100%;"></div>
+		</div>
+		
+	  </div>
+	  
+	  
+
+<div data-role="panel" id="menu3" data-position-fixed="true" data-position="left" data-display="overlay" data-theme="b" class="ui-panel-display-overlay ui-body-inherit ui-panel-fixed ui-panel-animate ui-panel-open panelM" >
+		<div class="ui-panel-inner">
+			<div>
+				<img src="resources/images/cabecera_left_menu.png" class="menuLeftImagenCabecera"/>
+				</div>
+				<ul class="menuLeft" data-role="listview" data-theme="a" data-divider-theme="c" data-inset="false">
+					<li class="b_noticias">
+						<a href="#indexPage" id="novedadesMenu" data-transition="fade">
+							<span class="negrita letraMenu">Noticias</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesInstantaneos" id="caudalesInstantaneosMenu" data-transition="fade" >
+							<span class="negrita letraMenu">Caudales Instantáneos</span>
+						</a>
+					</li>
+					<li class="b_saih_caudales">
+						<a href="#SAIHCaudalesDiarios" id="caudalesDiariosMenu" data-transition="fade">
+							<span class="negrita letraMenu">Caudales Medio Diario</span>
+						</a>
+					</li>
+					<li class="b_saih_precipitaciones">
+						<a href="#SAIHPrecipitaciones" id="precipitacionesMenu" data-transition="fade"  class="activo">
+							<span class="negrita letraMenu">Precipitaciones</span>
+						</a>
+					</li>
+				</ul>	
+		  </div>
+	 </div>
+
+  </div>
+  
+  
+  
+  
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="resources/conf/configuration.js"></script>
+    <script type="text/javascript" src="resources/js/chg.js"></script>
+    <script type="text/javascript" src="resources/js/drawFeed.js"></script>
+	<script type="text/javascript" src="resources/js/drawMap.js"></script>		
+    <script type="text/javascript" src="resources/js/drawTable.js"></script>
+</body>
+</html>

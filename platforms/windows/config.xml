@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="es.chguadalquivir.chg" version="102" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>CH Guadalquivir</name>
+    <description>
+        CH Guadalquivir
+    </description>
+    <author email="aomartin@gfi.es" href="http://phonegap.com">
+        GFI Sur
+    </author>
+    <content src="index.html" />
+    <icon src="res/icon/icon.png" />
+    <icon platform="android" qualifier="ldpi" src="res/icon/android/icon-36-ldpi.png" />
+    <icon platform="android" qualifier="mdpi" src="res/icon/android/icon-48-mdpi.png" />
+    <icon platform="android" qualifier="hdpi" src="res/icon/android/icon-72-hdpi.png" />
+    <icon platform="android" qualifier="xhdpi" src="res/icon/android/icon-96-xhdpi.png" />
+    <icon height="29" platform="ios" src="res/icon/ios/icon-small.png" width="29" />
+    <icon height="58" platform="ios" src="res/icon/ios/icon-small@2x.png" width="58" />
+    <icon height="40" platform="ios" src="res/icon/ios/icon-40.png" width="40" />
+    <icon height="80" platform="ios" src="res/icon/ios/icon-40@2x.png" width="80" />
+    <icon height="50" platform="ios" src="res/icon/ios/icon-50.png" width="50" />
+    <icon height="100" platform="ios" src="res/icon/ios/icon-50@2x.png" width="100" />
+    <icon height="57" platform="ios" src="res/icon/ios/icon-57.png" width="57" />
+    <icon height="114" platform="ios" src="res/icon/ios/icon-57@2x.png" width="114" />
+    <icon height="60" platform="ios" src="res/icon/ios/icon-60.png" width="60" />
+    <icon height="120" platform="ios" src="res/icon/ios/icon-60@2x.png" width="120" />
+    <icon height="72" platform="ios" src="res/icon/ios/icon-72.png" width="72" />
+    <icon height="144" platform="ios" src="res/icon/ios/icon-72@2x.png" width="144" />
+    <icon height="76" platform="ios" src="res/icon/ios/icon-76.png" width="76" />
+    <icon height="152" platform="ios" src="res/icon/ios/icon-76@2x.png" width="152" />
+    <icon height="120" platform="ios" src="res/icon/ios/icon-120.png" width="120" />
+    <icon height="140" platform="ios" src="res/icon/ios/icon-120@2x.png" width="140" />
+    <splash src="res/screen/splash.png" />
+    <splash height="1136" src="res/screen/Default-568h@2x.png" width="640" />
+    <splash height="2208" src="res/screen/Default-736h.png" width="1242" />
+    <splash platform="android" qualifier="port-ldpi" src="res/screen/android/screen-ldpi.png" />
+    <splash platform="android" qualifier="port-mdpi" src="res/screen/android/screen-mdpi.png" />
+    <splash platform="android" qualifier="port-hdpi" src="res/screen/android/screen-hdpi.png" />
+    <splash platform="android" qualifier="port-xhdpi" src="res/screen/android/screen-xhdpi.png" />
+    <splash height="480" platform="ios" src="res/screen/ios/screen-iph2-3-3s.png" width="320" />
+    <splash height="960" platform="ios" src="res/screen/ios/screen-iph4-4s.png" width="640" />
+    <splash height="1136" platform="ios" src="res/screen/ios/screen-iph5-5s.png" width="640" />
+    <splash height="1024" platform="ios" src="res/screen/ios/screen-iph6.png" width="768" />
+    <splash height="768" platform="ios" src="res/screen/ios/screen-ipad-2x.png" width="1024" />
+    <splash height="768" platform="ios" src="res/screen/ios/screen-ipad2-1x.png" width="1024" />
+	
+	<!-- splash windows -->
+	<splash src="res/screen/windows/splashscreen.png" width="620" height="300"/> 
+	<splash src="res/screen/windows/splashscreenphone.png" width="1152" height="1920"/>
+	
+	<!-- icons windows -->
+	 <icon src="res/icon/windows/storelogo.png" target="StoreLogo" />
+		        <icon src="res/icon/windows/smalllogo.png" target="Square30x30Logo" />
+		        <icon src="res/icon/windows/Square44x44Logo.png" target="Square44x44Logo" />
+		        <icon src="res/icon/windows/Square70x70Logo.png" target="Square70x70Logo" />
+		        <icon src="res/icon/windows/Square71x71Logo.png" target="Square71x71Logo" />
+		        <icon src="res/icon/windows/Square150x150Logo.png" target="Square150x150Logo" />
+		        <icon src="res/icon/windows/Square310x310Logo.png" target="Square310x310Logo" />
+		        <icon src="res/icon/windows/Wide310x150Logo.png" target="Wide310x150Logo" />
+				
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="permissions" value="none" />
+</widget>
